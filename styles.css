@@ -1,0 +1,209 @@
+:root {
+    --primary: #d4af37; /* Gold */
+    --bg-start: #0f172a; /* Slate 900 */
+    --bg-end: #1e1b4b; /* Indigo 950 */
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
+    color: white;
+    overflow-x: hidden;
+    padding: 20px;
+}
+
+/* Animated background elements */
+.bg-shapes {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.shape {
+    position: absolute;
+    filter: blur(60px);
+    opacity: 0.5;
+    animation: float 20s infinite ease-in-out alternate;
+}
+
+.shape-1 {
+    width: 300px;
+    height: 300px;
+    background: #4f46e5;
+    border-radius: 50%;
+    top: -10%;
+    left: -10%;
+}
+
+.shape-2 {
+    width: 400px;
+    height: 400px;
+    background: #eab308;
+    border-radius: 50%;
+    bottom: -20%;
+    right: -10%;
+    animation-delay: -5s;
+}
+
+@keyframes float {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(50px, 50px) scale(1.1); }
+}
+
+.container {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 40px;
+    max-width: 600px;
+    width: 100%;
+    margin: auto;
+    text-align: center;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 1.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+    background: linear-gradient(to right, #fbbf24, #f59e0b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0px 4px 10px rgba(245, 158, 11, 0.3);
+}
+
+p.subtitle {
+    font-size: 1.2rem;
+    color: #cbd5e1;
+    margin-bottom: 30px;
+    font-weight: 300;
+    line-height: 1.6;
+}
+
+.spotify-container {
+    margin-top: 30px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.spotify-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+}
+
+.decorative-line {
+    width: 60px;
+    height: 4px;
+    background: var(--primary);
+    margin: 0 auto 30px;
+    border-radius: 2px;
+}
+
+.image-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 30px;
+    justify-content: center;
+}
+
+.image-gallery img {
+    width: calc(50% - 7.5px);
+    height: 160px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.image-gallery img.full-width {
+    width: 100%;
+    height: 200px;
+    object-position: center 15%;
+}
+
+.image-gallery img:hover {
+    transform: scale(1.1) translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+    z-index: 2;
+    position: relative;
+}
+
+.superman-logo {
+    width: 80px;
+    height: auto;
+    margin: 0 auto 15px;
+    display: block;
+    filter: drop-shadow(0px 5px 15px rgba(212, 175, 55, 0.4));
+    animation: floatLogo 4s infinite ease-in-out;
+}
+
+@keyframes floatLogo {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+    100% { transform: translateY(0); }
+}
+
+/* Responsive adjustments for mobile devices */
+@media (max-width: 600px) {
+    body {
+        padding: 15px;
+    }
+    .container {
+        padding: 25px 15px;
+        border-radius: 20px;
+    }
+    .superman-logo {
+        width: 60px;
+        margin-bottom: 10px;
+    }
+    h1 {
+        font-size: 2.2rem;
+    }
+    p.subtitle {
+        font-size: 1rem;
+        margin-bottom: 20px;
+    }
+    .image-gallery {
+        gap: 8px;
+        margin-bottom: 20px;
+    }
+    .image-gallery img {
+        height: 130px;
+        width: calc(50% - 4px);
+        border-radius: 8px;
+    }
+    .image-gallery img.full-width {
+        width: 100%;
+        height: 160px;
+    }
+    .spotify-container {
+        margin-top: 20px;
+    }
+}
