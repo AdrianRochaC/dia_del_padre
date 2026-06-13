@@ -103,17 +103,89 @@ p.subtitle {
     line-height: 1.6;
 }
 
-.spotify-container {
+/* Custom Player Styles */
+.custom-player-wrapper {
     margin-top: 30px;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.spotify-container:hover {
+.custom-player {
+    display: flex;
+    align-items: center;
+    background: #181818; /* Color tipo Spotify oscuro */
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    gap: 20px;
+}
+
+.custom-player:hover {
     transform: translateY(-5px);
     box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+}
+
+.player-cover {
+    width: 140px;
+    height: 140px;
+    border-radius: 8px;
+    object-fit: cover;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.player-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+    height: 130px;
+}
+
+.player-info {
+    text-align: left;
+}
+
+.player-controls {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.song-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: #fff;
+}
+
+.song-artist {
+    font-size: 1rem;
+    color: #cbd5e1;
+    margin-bottom: 0;
+}
+
+.play-btn {
+    background: var(--primary);
+    border: none;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.play-btn svg {
+    width: 30px;
+    height: 30px;
+}
+
+.play-btn:hover {
+    transform: scale(1.1);
+    background: #fcd34d;
 }
 
 .decorative-line {
@@ -203,7 +275,25 @@ p.subtitle {
         width: 100%;
         height: 160px;
     }
-    .spotify-container {
-        margin-top: 20px;
+    .custom-player {
+        padding: 15px;
+        gap: 15px;
+    }
+    .player-cover {
+        width: 100px;
+        height: 100px;
+    }
+    .player-right {
+        height: 100px;
+    }
+    .play-btn {
+        width: 45px;
+        height: 45px;
+    }
+    .song-title {
+        font-size: 1.1rem;
+    }
+    .song-artist {
+        font-size: 0.8rem;
     }
 }
