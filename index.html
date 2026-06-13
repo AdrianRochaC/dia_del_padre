@@ -29,9 +29,72 @@
             <img src="images/foto_2.jpeg" alt="Recuerdo 2" class="full-width">
         </div>
 
-        <div class="spotify-container">
-            <iframe data-testid="embed-iframe" style="border-radius:12px; display:block;" src="https://open.spotify.com/embed/track/7jyS3EpDcRu7lZ04kryZUG?utm_source=generator&theme=0&si=57a5e600812946aa" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <div class="custom-player-wrapper">
+            <div class="custom-player">
+                <img src="https://img.youtube.com/vi/BNemx9DcqDs/maxresdefault.jpg" alt="Portada de la canción" class="player-cover">
+                <div class="player-right">
+                    <div class="player-info">
+                        <h4 class="song-title">Mi Padre Me Enseñó</h4>
+                        <p class="song-artist">AIM WIND</p>
+                    </div>
+                    <div class="player-controls">
+                        <button id="playBtn" class="play-btn">
+                            <svg id="icon-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                            <svg id="icon-pause" viewBox="0 0 24 24" fill="currentColor" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="position: absolute; width: 0; height: 0; overflow: hidden; opacity: 0;">
+                <div id="ytplayer"></div>
+            </div>
         </div>
     </div>
+
+    <script>
+        // Cargar YouTube IFrame API
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        document.head.appendChild(tag);
+
+        var player;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('ytplayer', {
+                height: '200',
+                width: '200',
+                videoId: 'BNemx9DcqDs',
+                playerVars: { 'playsinline': 1, 'controls': 0 },
+                events: {
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        var playBtn = document.getElementById('playBtn');
+        var isPlaying = false;
+
+        playBtn.addEventListener('click', function() {
+            if (player && typeof player.playVideo === 'function') {
+                if (isPlaying) {
+                    player.pauseVideo();
+                } else {
+                    player.playVideo();
+                }
+            }
+        });
+
+        function onPlayerStateChange(event) {
+            if (event.data == YT.PlayerState.PLAYING) {
+                document.getElementById('icon-play').style.display = 'none';
+                document.getElementById('icon-pause').style.display = 'block';
+                isPlaying = true;
+            } else if (event.data == YT.PlayerState.PAUSED || event.data == YT.PlayerState.ENDED) {
+                document.getElementById('icon-play').style.display = 'block';
+                document.getElementById('icon-pause').style.display = 'none';
+                isPlaying = false;
+            }
+        }
+    </script>
 </body>
 </html>
